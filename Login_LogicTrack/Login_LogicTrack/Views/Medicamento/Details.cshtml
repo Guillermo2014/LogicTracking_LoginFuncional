@@ -1,0 +1,97 @@
+﻿@model Login_LogicTrack.Models.Medicamento
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/_Layout2.cshtml";
+}
+
+<h1>Detalles medicamento</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdMedicamento)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdMedicamento)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.nombreMedicamento)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.nombreMedicamento)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.fechaRecepcion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.fechaRecepcion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.fechaVencimiento)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.fechaVencimiento)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.lote)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.lote)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.cantidad)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.cantidad)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.idProveedor)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.idProveedor)
+        </dd>
+    </dl>
+</div>
+
+<h1>Condiciones</h1>
+
+<table class="table table-bordered">
+    <thead class="table-dark text-center">
+        <tr>
+            <th>
+                Variable Medición
+            </th>
+            <th>
+                Unidad Medida
+            </th>
+
+            <th>
+                Valor Medida
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.condicionesMedicamento)
+        {
+            <tr class="text-center">
+                <td>
+                    @Html.DisplayFor(modelItem => item.variableMedicion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.unidadMedida)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.valorMedida)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    @Html.ActionLink("Back to List", "Index") |
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Crear Condicion", "CreateCondicion", new { id = Model.IdMedicamento })
+</div>

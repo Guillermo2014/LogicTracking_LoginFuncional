@@ -1,0 +1,76 @@
+﻿@model Login_LogicTrack.Models.Proveedor
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/_Layout2.cshtml";
+}
+
+<h1>Registro de proveedor</h1>
+
+<h4>Llenar los siguientes datos: </h4>
+<hr />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.razonSocial, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.razonSocial, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.razonSocial, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.identificacion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.identificacion, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.identificacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.pais, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.pais, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.pais, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ciudad, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ciudad, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.ciudad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:15px">
+            @Html.LabelFor(model => model.direccion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.direccion, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.direccion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:15px">
+            @Html.LabelFor(model => model.idRepresentante, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idRepresentante", (IEnumerable<SelectListItem>)ViewBag.Representantes, null, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:15px">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Registrar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

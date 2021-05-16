@@ -1,0 +1,118 @@
+﻿@model Login_LogicTrack.Models.Solicitud
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/_Layout1.cshtml";
+}
+
+<div>
+    <h4>Solicitud de Despacho</h4>
+    <br />
+    @Html.ActionLink("Mostrar Graficas", "Seguimiento", new { id = Model.idDespacho }, new { @class = "btn btn-success" })
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            N° de Solicitud
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.idDespacho)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.fechaCreacion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.fechaCreacion)
+        </dd>
+        <dt class="col-sm-2">
+            Estado
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.fechaDespacho)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.fechaDespacho)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.direccionEntrega)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.direccionEntrega)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.observacion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.observacion)
+        </dd>
+        <dt class="col-sm-2">
+            Solicitante
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.solicitante.nombre)
+        </dd>
+        <dt class="col-sm-2">
+            Recepcionista
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.recepcionista.nombre)
+        </dd>
+    </dl>
+</div>
+<h4>Detalle</h4>
+<hr />
+
+<div style="overflow-x:auto;">
+    <table class="table table-bordered table-sm table-striped" cellspacing="0" width="120%">
+        <thead class="table-dark text-center">
+            <tr>
+                <th>
+                    Etiqueta
+                </th>
+                <th>
+                    Medicamento
+                </th>
+                <th>
+                    Descripción
+                </th>
+
+                <th>
+                    Cantidad
+                </th>
+
+                <th>
+                    Total
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.detallesDespacho)
+            {
+                <tr class="text-center">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.etiqueta)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.medicamento.nombreMedicamento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cantidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.valorTotal)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    @Html.ActionLink("Regresar al listado", "Index") |
+    @Html.ActionLink("Editar", "EditarDespacho", new { id = Model.idDespacho }) |
+    @Html.ActionLink("Agregar Detalle", "CreateDetalleDespacho", new { id = Model.idDespacho })
+</div>

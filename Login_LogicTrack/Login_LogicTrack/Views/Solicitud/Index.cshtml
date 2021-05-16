@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Login_LogicTrack.Models.Solicitud>
+
+@{
+    Layout = "~/Views/_Layout1.cshtml";
+}
+
+<h1>Solicitudes</h1>
+<br />
+<p>
+    <a href="/Solicitud/Create"><input type="button" class="btn btn-primary" value="Crear solicitud"></a>
+</p>
+
+<div style="overflow-x:auto;">
+    <table class="table table-bordered table-sm table-striped" cellspacing="0" width="120%">
+        <thead class="table-dark text-center">
+            <tr class="text-center">
+                <th>
+                    @Html.DisplayNameFor(model => model.idDespacho)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fechaCreacion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fechaDespacho)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.direccionEntrega)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.observacion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.idSolicitante)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.idRecepcionista)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="text-center">
+                    <td>
+                        @Html.ActionLink(item.idDespacho.ToString(), "Details", new { id = item.idDespacho }, new { @class = "btn btn-primary" })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fechaCreacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fechaDespacho)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.direccionEntrega)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.observacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.idSolicitante)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.idRecepcionista)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

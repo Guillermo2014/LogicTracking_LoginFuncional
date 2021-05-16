@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRYb-tgWCilA96VP361QmNDgQqv5Y2asI&callback=initMap" type="text/javascript" async></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-toggleable-lg navbar-dark bg-dark border-bottom box-shadow mb-3 navbar ">
+            <div class="container-fluid">
+                @Html.ActionLink("LogicTrack", "Create", "Login", new { area = "" }, new { @class = "navbar-brand" })
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <ul class="navbar-nav offset-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        Transportista
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Link 1</a>
+                        <a class="dropdown-item" href="#">Link 2</a>
+                        <hr>
+                        @Html.ActionLink("Cerrar Session", "Create", "Login", new { area = "" }, new { @class = "dropdown-item" })
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js"></script>
+
+
+
+    <script type="text/javascript">
+        function GenerateRuntimeGraph(actionName, tipo, divID, graficaNombre) {
+            $.ajax({
+                type: "POST",
+                url: '/Home/' + actionName,
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                success: function (chData) {
+                    var aData = chData;
+                    var aLabels = aData[0];
+                    var aDatasets = aData[1];
+                    //For Bar Chart
+                    var ctx = document.getElementById(divID).getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: tipo,
+                        height: "230px",
+                        width: "300px",
+                        autoSkip: false,
+                        responsive: false,
+                        animation: false,
+                        showDatapoints: true,
+                        legend: { position: 'bottom' },
+                        data: {
+                            labels: aLabels,
+                            datasets: [{
+                                label: graficaNombre,
+                                data: aDatasets,
+                                backgroundColor:
+                                    'rgba(255, 99, 132, 0.5)'
+                                ,
+                            }]
+                        }, options: {
+                            events: ['click'],
+                            indexAxis: 'y',
+                            scaleShowValues: true,
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true,
+                                        //stepSize: 50
+                                        min: 0
+
+
+                                    }
+                                }],
+                                xAxes: [{
+                                    ticks: {
+                                        autoSkip: true,
+                                        //stepSize: 50
+                                        min: 0
+                                    }
+
+                                }]
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+        Window.onload = GenerateRuntimeGraph("CrearGraficaMedicamentos", "bar", "myChart", "Stock por Medicamentos")
+        Window.onload = GenerateRuntimeGraph("CrearGraficaMedicamentosPorProveedor", "bar", "myChart2", "Medicamento por Proveedor")
+        Window.onload = GenerateRuntimeGraph("CrearGraficaSolicitudPorCliente", "horizontalBar", "myChart3", "Solicitud por Cliente")
+        Window.onload = GenerateRuntimeGraph("CrearGraficaDespachosFechaCreacion", "line", "myChart4", "Despachos por Fecha")
+
+        setInterval(function () {
+            GenerateRuntimeGraph("CrearGraficaMedicamentos", "bar", "myChart", "Stock por Medicamentos");
+            GenerateRuntimeGraph("CrearGraficaMedicamentosPorProveedor", "bar", "myChart2", "Medicamento por Proveedor");
+            GenerateRuntimeGraph("CrearGraficaSolicitudPorCliente", "horizontalBar", "myChart3", "Solicitud por Cliente");
+            GenerateRuntimeGraph("CrearGraficaDespachosFechaCreacion", "line", "myChart4", "Despachos por Fecha");
+        }, 60000);
+
+
+    </script>
+
+
+    <script type="text/javascript">
+        function GenerateRuntimeGraph(actionName, tipo, divID, graficaNombre) {
+            $.ajax({
+                type: "POST",
+                url: '/Solicitud/' + actionName,
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                success: function (chData) {
+                    var aData = chData;
+                    var aLabels = aData[0];
+                    var aDatasetMin = aData[1];
+                    var aDatasetMax = aData[2];
+                    var aDatasetMed = aData[3];
+                    //For Bar Chart
+                    var ctx = document.getElementById(divID).getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: tipo,
+                        data: {
+                            labels: aLabels,
+                            datasets: [{
+                                type: 'line',
+                                label: 'Valor Minimo',
+                                data: aDatasetMin,
+                                fill: false,
+                                backgroundColor: 'rgb(54, 162, 235)',
+                            },
+                            {
+                                type: 'line',
+                                label: 'Valor Maximo',
+                                data: aDatasetMax,
+                                fill: false,
+                                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                            },
+                            {
+                                type: 'line',
+                                label: 'Valor Medicion',
+                                data: aDatasetMed,
+                                fill: false,
+                                backgroundColor: 'rgb(75, 192, 192)',
+                            }
+                            ]
+                        },
+                        options: {
+
+                            indexAxis: 'y',
+                            scaleShowValues: true,
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true,
+                                        min: 0
+
+
+                                    }
+                                }],
+                                xAxes: [{
+                                    ticks: {
+                                        autoSkip: true,
+                                        min: 0
+                                    }
+
+                                }]
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+
+        Window.onload = GenerateRuntimeGraph("CrearGraficaSeguimiento", "line", "myChartSeguimiento", "Seguimiento por Hora")
+
+        setInterval(function () {
+            GenerateRuntimeGraph("CrearGraficaSeguimiento", "line", "myChartSeguimiento", "Seguimiento por Hora");
+        }, 60000);
+
+
+    </script>
+
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

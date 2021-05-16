@@ -1,0 +1,76 @@
+﻿@model Login_LogicTrack.Models.Medicamento
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/_Layout2.cshtml";
+}
+
+<h1>Registro de medicamento</h1>
+
+<h4>Llenar los siguientes datos: </h4>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.nombreMedicamento, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nombreMedicamento, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.nombreMedicamento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fechaRecepcion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fechaRecepcion, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.fechaRecepcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fechaVencimiento, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fechaVencimiento, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.fechaVencimiento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.lote, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.lote, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.lote, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:15px">
+            @Html.LabelFor(model => model.cantidad, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.cantidad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:15px">
+            @Html.LabelFor(model => model.idProveedor, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idProveedor", (IEnumerable<SelectListItem>)ViewBag.Proveedores, null, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:15px">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Registrar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

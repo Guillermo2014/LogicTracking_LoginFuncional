@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Login_LogicTrack.Models.Empresa>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_Layout2.cshtml";
+}
+
+<h1>Empresas</h1>
+<br />
+<p>
+    <!--<a asp-action="Create">Create New</a>-->
+    <a href="/Empresa/Create"><input type="button" class="btn btn-primary" value="Crear empresa"></a>
+</p>
+
+<div style="overflow-x:auto;">
+    <table class="table table-bordered table-sm table-striped" cellspacing="0" width="120%">
+        <thead class="table-dark text-center">
+            <tr class="text-center">
+                <th>
+                    @Html.DisplayNameFor(model => model.idEmpresaCliente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.razonSocial)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.identificacion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.departamento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ciudad)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.direccion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.telefono)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="text-center">
+                    <td>
+                        @Html.ActionLink(item.idEmpresaCliente.ToString(), "Details", new { id = item.idEmpresaCliente }, new { @class = "btn btn-primary" })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.razonSocial)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.identificacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.departamento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ciudad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.direccion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.telefono)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

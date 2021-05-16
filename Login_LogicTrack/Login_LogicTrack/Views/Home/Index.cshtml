@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_Layout2.cshtml";
+}
+
+<div class="text-center">
+
+    <!--<h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>-->
+</div>
+
+<div id="chartContainerPie" class="row">
+    <div class="col-md-6">
+        <canvas id="myChart"> </canvas>
+    </div>
+    <div class="col-md-6">
+        <canvas id="myChart2"> </canvas>
+    </div>
+</div>
+
+<div id="chartContainerPie" class="row">
+    <div class="col-md-6">
+        <canvas id="myChart3"> </canvas>
+    </div>
+    <div class="col-md-6">
+        <canvas id="myChart4"> </canvas>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    function GenerateRuntimeGraph(actionName, tipo, divID, graficaNombre) {
+        $.ajax({
+            type: "POST",
+            url: '/Home/' + actionName,
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (chData) {
+                var aData = chData;
+                var aLabels = aData[0];
+                var aDatasets = aData[1];
+                //For Bar Chart
+                var ctx = document.getElementById(divID);
+                var myChart = new Chart(ctx, {
+                    type: tipo,
+                    height: "230px",
+                    width: "300px",
+                    autoSkip: false,
+                    responsive: false,
+                    animation: false,
+                    showDatapoints: true,
+                    legend: { position: 'bottom' },
+                    data: {
+                        labels: aLabels,
+                        datasets: [{
+                            label: graficaNombre,
+                            data: aDatasets,
+                            backgroundColor:
+                                'rgba(255, 99, 132, 0.5)'
+                            ,
+                        }]
+                    }, options: {
+                        events: ['click'],
+                        indexAxis: 'y',
+                        scaleShowValues: true,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true,
+                                    //stepSize: 50
+                                    min: 0
+
+
+                                }
+                            }],
+                            xAxes: [{
+                                ticks: {
+                                    autoSkip: true,
+                                    //stepSize: 50
+                                    min: 0
+                                }
+
+                            }]
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    Window.onload = GenerateRuntimeGraph("CrearGraficaMedicamentos", "bar", "myChart", "Stock por Medicamentos")
+    Window.onload = GenerateRuntimeGraph("CrearGraficaMedicamentosPorProveedor", "bar", "myChart2", "Medicamento por Proveedor")
+    Window.onload = GenerateRuntimeGraph("CrearGraficaSolicitudPorCliente", "horizontalBar", "myChart3", "Solicitud por Cliente")
+    Window.onload = GenerateRuntimeGraph("CrearGraficaDespachosFechaCreacion", "line", "myChart4", "Despachos por Fecha")
+
+    setInterval(function () {
+        GenerateRuntimeGraph("CrearGraficaMedicamentos", "bar", "myChart", "Stock por Medicamentos");
+        GenerateRuntimeGraph("CrearGraficaMedicamentosPorProveedor", "bar", "myChart2", "Medicamento por Proveedor");
+        GenerateRuntimeGraph("CrearGraficaSolicitudPorCliente", "horizontalBar", "myChart3", "Solicitud por Cliente");
+        GenerateRuntimeGraph("CrearGraficaDespachosFechaCreacion", "line", "myChart4", "Despachos por Fecha");
+    }, 60000);
+
+
+</script>
+
