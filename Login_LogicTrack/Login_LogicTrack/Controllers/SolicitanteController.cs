@@ -90,9 +90,22 @@ namespace Login_LogicTrack.Controllers
 
 
 
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
+            List<Cliente> clientes = new List<Cliente>();
 
+            HttpClient client = _api.Initial();
+            HttpResponseMessage response = await client.GetAsync("clientes");
+
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = response.Content.ReadAsStringAsync().Result;
+                clientes = JsonConvert.DeserializeObject<List<Cliente>>(result);
+            }
+
+
+            ViewBag.Clientes = new SelectList(clientes, "id", "nombre");
             return View();
         }
 
