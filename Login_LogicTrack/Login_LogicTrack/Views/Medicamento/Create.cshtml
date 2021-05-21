@@ -5,6 +5,8 @@
     Layout = "~/Views/_Layout2.cshtml";
 }
 
+<link href="~/Content/ListMed.css" rel="stylesheet"/>
+
 <h1>Registro de medicamento</h1>
 
 <h4>Llenar los siguientes datos: </h4>
@@ -27,7 +29,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.fechaRecepcion, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.fechaRecepcion, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.EditorFor(model => model.fechaRecepcion, new { htmlAttributes = new { @class = "form-control", @required = "required", @type = "date" } })
                 @Html.ValidationMessageFor(model => model.fechaRecepcion, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -35,7 +37,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.fechaVencimiento, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.fechaVencimiento, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.EditorFor(model => model.fechaVencimiento, new { htmlAttributes = new { @class = "form-control", @required = "required", @type = "date" } })
                 @Html.ValidationMessageFor(model => model.fechaVencimiento, "", new { @class = "text-danger" })
             </div>
         </div>
