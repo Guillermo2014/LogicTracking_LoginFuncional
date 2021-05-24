@@ -5,6 +5,8 @@
     Layout = "~/Views/_Layout2.cshtml";
 }
 
+<link href="~/lib/datatables.net-bs4/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
 <h1>Solicitudes</h1>
 <br />
 <p>
@@ -12,7 +14,7 @@
 </p>
 
 <div style="overflow-x:auto;">
-    <table class="table table-bordered table-sm table-striped" cellspacing="0" width="120%">
+    <table id="Tabla" class="table table-bordered table-sm table-striped" cellspacing="0" width="120%">
         <thead class="table-dark text-center">
             <tr class="text-center">
                 <th>
@@ -68,3 +70,23 @@
         </tbody>
     </table>
 </div>
+
+<script src="~/lib/datatables.net/jquery.dataTables.min.js"></script>
+<script src="~/lib/datatables.net-bs4/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#Tabla').DataTable({
+            responsive: "true",
+            dom: 'Bfrtilp',
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    text: '<i class="fas fa-file-excel"></i>',
+                    titleAttr: 'Exportar a Excel',
+                    className: 'btn btn-success'
+                },
+            ]
+        });
+    });
+</script>

@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "datatables.net@1.10.24",
+      "destination": "lib/datatables.net/",
+      "files": [
+        "jquery.dataTables.min.js"
+      ]
+    },
+    {
+      "library": "datatables.net-bs4@1.10.24",
+      "destination": "lib/datatables.net-bs4/",
+      "files": [
+        "dataTables.bootstrap4.min.js",
+        "dataTables.bootstrap4.min.css"
+      ]
+    },
+    {
+      "library": "datatables.net-buttons-bs4@1.7.0",
+      "destination": "lib/datatables.net-buttons-bs4/"
+    },
+    {
+      "library": "datatables.net-buttons@1.7.0",
+      "destination": "lib/datatables.net-buttons/",
+      "files": [
+        "js/dataTables.buttons.min.js",
+        "js/buttons.html5.min.js"
+      ]
+    },
+    {
+      "library": "jszip@3.6.0",
+      "destination": "lib/jszip/",
+      "files": [
+        "jszip.min.js"
+      ]
+    }
+  ]
+}
