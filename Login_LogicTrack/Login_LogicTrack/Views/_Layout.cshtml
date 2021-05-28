@@ -18,7 +18,9 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-toggleable-lg navbar-dark bg-dark border-bottom box-shadow mb-3 navbar ">
             <div class="container-fluid">
-                @Html.ActionLink("LogicTrack", "Create", "Login", new { area = "" }, new { @class = "navbar-brand" })
+                <a href='@Url.Action("Create", "Login")'>
+                    <img src='@Url.Content("~/Image/logo LogiTrack App web.png")' width="200" height="50" />
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -48,10 +50,6 @@
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

@@ -384,7 +384,12 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\ListMed.css" />
+    <Content Include="Content\main.css" />
+    <Content Include="Content\Style1.css" />
+    <Content Include="Content\util.css" />
     <Content Include="Global.asax" />
+    <Content Include="Image\logo LogiTrack App web fondo blanco.png" />
+    <Content Include="Image\logo LogiTrack App web.png" />
     <Content Include="lib\datatables.net-bs4\dataTables.bootstrap4.min.css" />
     <Content Include="lib\datatables.net-bs4\dataTables.bootstrap4.min.js" />
     <Content Include="lib\datatables.net-buttons-bs4\buttons.bootstrap4.css" />
@@ -434,6 +439,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
