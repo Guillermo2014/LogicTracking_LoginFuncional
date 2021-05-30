@@ -4,14 +4,14 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 390px;
 }
 
 input,
 select,
 textarea,
 .input-group {
-    max-width: 280px;
+    max-width: 390px;
 }
 
     input.form-block,

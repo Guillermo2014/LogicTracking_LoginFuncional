@@ -388,7 +388,9 @@
     <Content Include="Content\Style1.css" />
     <Content Include="Content\util.css" />
     <Content Include="Global.asax" />
+    <Content Include="Image\Image1.png" />
     <Content Include="Image\logo LogiTrack App web fondo blanco.png" />
+    <Content Include="Image\logo LogiTrack App web fondo negro.png" />
     <Content Include="Image\logo LogiTrack App web.png" />
     <Content Include="lib\datatables.net-bs4\dataTables.bootstrap4.min.css" />
     <Content Include="lib\datatables.net-bs4\dataTables.bootstrap4.min.js" />
